@@ -1,0 +1,24 @@
+/* Navbar.css */
+.navbar {
+    border-bottom: 2px solid #007bff;
+  }
+  
+  .navbar-brand {
+    font-weight: bold;
+    color: #007bff !important;
+  }
+  
+  .nav-item .nav-link {
+    font-size: 1.1rem;
+    color: #333;
+  }
+  
+  .nav-item .nav-link:hover {
+    color: #007bff;
+    text-decoration: underline;
+  }
+  
+  .navbar-light .navbar-toggler-icon {
+    background-color: #007bff;
+  }
+  

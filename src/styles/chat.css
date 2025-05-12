@@ -1,0 +1,147 @@
+
+.chat_section {
+    background: url('../assets/chatapp.jpg') no-repeat center center;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    /* background: linear-gradient(to right, #e0eafc, #cfdef3); */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .border {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    width: 400px;
+    max-width: 95%;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .chatlogo {
+    width: 60px;
+    margin-bottom: 10px;
+  }
+  
+  h1 {
+    font-weight: bold;
+    text-transform: capitalize;
+    font-family: sans-serif;
+}
+  
+  .msg_area {
+    height: 300px;
+    width: 100%;
+    background: #f1f1f1;
+    border-radius: 10px;
+    padding: 10px;
+    overflow-y: auto;
+    margin-bottom: 15px;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
+  }
+  
+  textarea {
+    width: calc(100% - 40px);
+    resize: none;
+    border: none;
+    padding: 10px;
+    border-radius: 20px;
+    outline: none;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin-right: 10px;
+  }
+  
+  .input_container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .send_btn {
+    background-color: #007bff;
+    border: none;
+    color: white;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transition: background 0.3s ease;
+  }
+  
+  .send_btn:hover {
+    background-color: #0056b3;
+  }
+
+.message {
+  max-width: 70%;
+  padding: 8px 12px;
+  margin: 5px 0;
+  border-radius: 8px;
+  background-color: #f1f1f1;
+  word-break: break-word;
+  white-space: pre-wrap;
+}
+
+
+  .incoming{
+    color: black;
+margin-right: auto;
+
+}
+.outgoing{
+    /* background: #e9eafd; */
+    color: black;
+    margin-left: auto;
+    text-align: -webkit-right;
+}
+.msg h4{
+    position: absolute;
+    top: -20px;
+    left: 0;
+    color: #333;
+    font-size: 14px;
+}
+  .incoming h4 {
+    color: yellowgreen;
+    margin-bottom: 4px;
+    font-family: cursive;
+    font-size: 18px;
+}
+.outgoing h4 {
+    color: red;
+    margin-bottom: 4px;
+    font-family: cursive;
+    text-align: right;
+    font-size: 18px;
+  
+}
+.msgp {
+    text-align: left;
+    background: #d6d6d6;
+    max-width: fit-content;
+    word-break: break-word;
+    white-space: pre-wrap;
+    box-shadow: black 1px 1px 7px 0px;
+    border-radius: 4px;
+    padding: 2px 2px 2px 2px;
+    font-family: cursive;
+    font-size: 15px;
+}
+
+/* .message {
+    max-width: 70%;
+    padding: 8px 12px;
+    margin: 5px 0;
+    border-radius: 8px;
+    word-break: break-word;
+    white-space: pre-wrap;
+  } */
+  

@@ -1,0 +1,288 @@
+
+::placeholder {
+    color: #6c757d;  /* Light greyish color like Bootstrap's placeholder */
+    opacity: 0.5;      /* Optional: ensures it's fully visible */
+  }
+  *{
+    margin: 0;
+  }
+  .container-form {
+
+    width: 29%;
+    background-color: white;
+    padding: 0 33px;
+    border-radius: 15px;
+    color: white;
+    text-align: center;
+    margin-left: 0;
+    padding-top: 13px;
+    box-shadow: 0px 0px 59px 8px #eee8e8;
+}
+
+p.ltext-center.mb-4.mt-0 {
+    color: black;
+    font-family: cursive;
+    font-size: xxx-large;
+    font-weight: 600;
+}
+.d-flex {
+    display: flex!important;
+    gap: 2%;
+    margin-left: 29px;
+}
+p.dont {
+    font-size: 14px;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: black;
+}
+p.signup {
+    font-family: revert;
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: dodgerblue;
+    /* padding-bottom: 2px; */
+}
+.form-control {
+    margin-bottom: 8px;
+    font-family: system-ui;
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.5;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: var(--bs-body-bg);
+    background-clip: padding-box;
+    border: var(--bs-border-width) solid var(--bs-border-color);
+    border-radius: var(--bs-border-radius);
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.cantainer {
+    padding: 50px 0 80px 0;
+    display: flex;
+    justify-content: right;
+    /* align-items: center; */
+    min-height: 100vh;
+    margin-right: 9%;
+    gap: 9%;
+    flex-flow: wrap-reverse;    
+}
+.logincontainer {
+    margin: 0;
+    /* max-width: 100%; */
+    max-width: 100%;
+    width: 90%;
+    justify-items: left;
+    margin-left: 10%;
+    POSITION: RELATIVE;
+    padding: 20px;
+}
+
+.gamelogo {
+    margin: 0;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    box-shadow: 0 0 30px rgb(82 0 255 / 34%), 0 0 15px rgba(123, 0, 255, 0.5);
+  }
+  
+  
+  /* Gradient Shadow Behind Image */
+
+  
+
+.btnlogin {
+    background: linear-gradient(to right, blue, purple);
+    color: #fff;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    margin-top: 7%;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 64%;
+}
+.btnlogin:hover {
+    background-color: #1877f2;
+    text-shadow: 1px 1px 5px rgb(5, 5, 5);
+    letter-spacing: 0.1em;
+
+
+}
+.separator {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 20px 0;
+    color: #aaa; /* light gray */
+    font-size: 14px;
+    font-weight: 500;
+  }
+  
+  .separator::before,
+  .separator::after {
+    content: "";
+    flex: 1;
+    border-bottom: 1px solid #ccc;
+    margin: 0 10px;
+  }
+  
+.insta{
+    object-fit: contain;
+}
+h5.ltext-center.mb-4.mt-0 {
+    color: #1b1a18;
+    /* background: linear-gradient(to right, #d16f09, #d80f0f); */
+    border-radius: 7px;
+    /* padding: 11px 4px; */
+    /* padding-left: 0px; */
+    /* width: 89px; */
+    font-size: 50px;
+    font-family: cursive;
+    /* font-weight: 900; */
+    font-weight: bolder;
+}
+
+
+.logerror-message {
+    color: #cc0d0d;
+    font-size: 14px;
+    text-align: justify;
+    font-family: auto;
+}
+
+button.signup {
+    width: 61%;
+    margin-left: 22%;
+    font-family: emoji;
+}
+
+.account{
+        margin-top: 18px;
+        margin-bottom: 1rem;
+        font-size: 15px;
+        /* padding: 0; */
+        font-family: serif;
+        color: darkslategrey;
+}
+.custom-footer {
+    text-align: center;
+    padding: 20px 0;
+    font-size: 14px;
+    color: #737373; /* Light gray, like Instagram footer */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  
+
+@media screen and (max-width: 600px) {
+    .insta {
+        width: 100%;
+        border-radius: 0;
+        padding-top: 20px;
+    }
+}
+@media screen and (max-width: 600px) {
+    .logincontainer {
+        width: 100%;
+        border-radius: 0;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .loginp {
+        width: 100%;
+        border-radius: 0;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .form-group {
+        width: 100%;
+        border-radius: 0;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .signup {
+        width: 100%;
+        border-radius: 0;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .btnlogin {
+        width: 100%;
+        border-radius: 0;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .gamelogo {
+        width: 100%;
+        border-radius: 0;
+    }
+}
+
+@media screen and(max-width: 768px) {
+    .container-form {
+        max-width: 100%;
+        /* Allow the form to take the full width on smaller screens */
+        padding: 20px;
+        /* Add padding for better spacing */
+    }
+}
+
+/* Add this to your existing CSS or create a new CSS file */
+.password-input {
+    position: relative;
+}
+
+.password-icon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #555;
+    /* Adjust the color as needed */
+}
+
+
+
+
+@media screen and (max-width: 1024px) {
+    .container-form {
+        width: 50%;
+        padding: 30px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .container-form {
+        width: 70%;
+    }
+    .gamelogo {
+        width: 80px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .container-form {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .gamelogo {
+        width: 60px;
+    }
+
+    h5.ltext-center.mb-4.mt-0 {
+        font-size: 90%;
+    }
+}
