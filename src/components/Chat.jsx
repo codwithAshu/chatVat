@@ -4,6 +4,7 @@ import '../styles/chat.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import { useLocation } from 'react-router-dom';
+import logo from '../assets/Cv.png'
 const socket = io('http://localhost:1010'); 
 
 export const ChatApp = () => {
@@ -55,7 +56,7 @@ console.log("userName",userName);
   return (
     <section className="chat_section">
       <div className="border">
-        <img className="chatlogo" src="/src/assets/Cv.png" alt="chat logo" />
+        <img className="chatlogo" src={logo} alt="chat logo" />
         <h1>{userName}</h1>
         <div className="msg_area">
           {chat.map((msg, index) => (
