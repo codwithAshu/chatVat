@@ -6,8 +6,8 @@ import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import { useLocation } from 'react-router-dom';
 import logo from '../assets/Cv.png'
 const socket = io("https://chatvat-backend.onrender.com", {
-    transports: ["websocket"],
-}); 
+    transports: ["polling"],
+    }); 
 
 export const ChatApp = () => {
     const location = useLocation();
