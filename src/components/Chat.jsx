@@ -5,7 +5,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import { useLocation } from 'react-router-dom';
 import logo from '../assets/Cv.png'
-const socket = io('http://localhost:1010'); 
+const socket = io("https://chatvat-backend.onrender.com", {
+    transports: ["websocket"],
+}); 
 
 export const ChatApp = () => {
     const location = useLocation();
