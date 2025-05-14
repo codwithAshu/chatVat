@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import { useLocation } from 'react-router-dom';
 import logo from '../assets/Cv.png'
-const socket = io("https://chatvat-backend.onrender.com", {
+const socket = io("https://dataconnection.onrender.com", {
     transports: ["polling"],
     }); 
 

@@ -40,7 +40,7 @@ const LogIn = () => {
     }),
         onSubmit :async(values) => {
           try{
-    const response=await axios.post('https://chatvat-backend.onrender.com/login',{
+    const response=await axios.post('https://dataconnection.onrender.com/login',{
       email:values.email,
       password:values.password,
     })
