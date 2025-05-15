@@ -44,8 +44,8 @@ const LogIn = () => {
       email:values.email,
       password:values.password,
     })
-    // console.log("response",response.data.gameId);
-    // console.log("res",response)
+    console.log("response",response.data.gameId);
+    console.log("res",response)
     // console.log(response.data.msg); 
     // console.log("name",response.data.Name);
     
