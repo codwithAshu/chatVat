@@ -10,7 +10,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import login from '../assets/instagram-web-lox-image-2x.png';
-import h from "../assets/hrt.png"
+
 
 
 const LogIn = () => {
@@ -137,7 +137,7 @@ const LogIn = () => {
 About Help Privacy Terms Contact Uploading & Non-Users   A.S Verified
 </p>
   <p className="custom-footer">
-        English  © 2025 ChatVat from Ashu <img src={h} alt="loginlogo" className="hrt"/>tinu 
+        English  © 2025 ChatVat from AshuWorld
 </p>
         </div>
   );
