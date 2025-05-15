@@ -43,6 +43,7 @@ console.log("userName",userName);
     };
   }, []);
 
+  const endOfMessagesRef = useRef(null); 
   useEffect(() => {
     // 👇 Scroll to bottom when new message arrives
     endOfMessagesRef.current?.scrollIntoView({ behavior: 'smooth' });
