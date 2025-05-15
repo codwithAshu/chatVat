@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState,useRef  } from 'react';
 import io from 'socket.io-client';
 import '../styles/chat.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
