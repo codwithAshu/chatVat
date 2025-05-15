@@ -43,6 +43,11 @@ console.log("userName",userName);
     };
   }, []);
 
+  useEffect(() => {
+    // 👇 Scroll to bottom when new message arrives
+    endOfMessagesRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [chat]);
+
   const sendMessage = () => {
     if (!message.trim()) return;
     const msgObj = {
@@ -65,8 +70,10 @@ console.log("userName",userName);
             <div key={index} className={`${msg.type} message`}>
               <h4>{msg.type === 'outgoing' ? 'me' : msg.user}</h4>
               <p className='msgp'>{msg.message}</p>
+              
             </div>
           ))}
+            <div ref={endOfMessagesRef}></div>
         </div>
         <div className="input_container">
           <textarea
