@@ -30,6 +30,9 @@ p.ltext-center.mb-4.mt-0 {
     gap: 2%;
     margin-left: 29px;
 }
+img.hrt {
+    max-width: 40px;
+}
 p.dont {
     font-size: 14px;
     margin-top: 0;
