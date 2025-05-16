@@ -34,9 +34,10 @@ const LogIn = () => {
       password: Yup.string()
         .required("Please Enter your password")
         .matches(
-          /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-          'Password must contain at least 8 characters, one uppercase letter, one lowercase letter, one number, and one special character.'
+          /^(?=.*[A-Z])(?=.*[a-z])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+          'Password must contain at least 8 characters, one uppercase letter, one lowercase letter, and one special character.'
         ),
+        
     }),
         onSubmit :async(values) => {
           try{
