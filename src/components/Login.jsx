@@ -14,7 +14,7 @@ import login from '../assets/instagram-web-lox-image-2x.png';
 
 
 const LogIn = () => {
-//   // const location = useLocation();
+//   // const location = useLocation(); 
 //   // // const { state } = location;
 //   // const initialEmail = location.state?.email || '';
 //   // const logoutMessage = location.state?.logoutMessage || '';

@@ -4,6 +4,7 @@ import Login from './components/Login'
 import Navbar from './components/Navbar'
 import { Route, Routes } from 'react-router-dom'
 import ChatApp from './components/Chat'
+import Signup from './components/Signup'
 
 
 function App() {
@@ -14,6 +15,8 @@ function App() {
     {/* <Login/> */}
 {/* <Navbar/> */}
 <Routes>
+  <Route path='/signup'  element={<Signup/>}/>
+Signup
 <Route path='/' element={<Login/>} />
 <Route path='/chatvat' element={<ChatApp/>} />
 </Routes>
