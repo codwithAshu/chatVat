@@ -10,11 +10,15 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import login from '../assets/instagram-web-lox-image-2x.png';
+import { useLocation } from 'react-router-dom';
 
 
 
 const LogIn = () => {
-//   // const location = useLocation(); 
+   
+  const location = useLocation(); 
+  const userName = location.state?.name || 'User';
+  const intialemail=location.state?.email || '';
 //   // // const { state } = location;
 //   // const initialEmail = location.state?.email || '';
 //   // const logoutMessage = location.state?.logoutMessage || '';
@@ -25,7 +29,7 @@ const LogIn = () => {
   const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
-      email: '',
+      email: intialemail,
       password: '',
     },
 
@@ -129,7 +133,7 @@ const LogIn = () => {
             <p className='or'>OR</p>
             <div className='d-flex' >
             <p className='dont'>Don't have an account?</p>
-            <p className='signup' onClick={() => navigate("/signUp")}>Sign Up</p>
+            <p className='signup' onClick={() => navigate("/")}>Sign Up</p>
             </div>
           </form>
         </div >

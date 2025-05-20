@@ -3,7 +3,10 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import '../styles/signup.css'
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 const Signup = () => {
+    const navigate = useNavigate();
+
   const emailRef = useRef(null);
   const phnRef = useRef(null);
   const passwordRef = useRef(null);
@@ -37,24 +40,28 @@ const Signup = () => {
         .matches(/[!@#$%^&*(),.?":{}|<>]/, 'Must include a special character')
         .required('Password is required'),
     }),
-    onSubmit: (val) => {
+    onSubmit: async(val) => {
       try{
         console.log("val",val);
-        const res=axios.post('https://chatbackend-ph5y.onrender.com/post',{
+        const response=await axios.post('https://chatbackend-ph5y.onrender.com/post',{
           email:val.email,
           password:val.password,
           fullName:val.fullName,
           username:val.username,
           phonenumber:val.phonenumber
         })
-        console.log("res",
-          res
-        );
-        
-        if(res.data.msg==="your account is successfully created"){
-          alert("you succesfully created account on chatvat")  
+        if(response.status===201){
+          console.log("hello bro");
+          
+          navigate("/login",{state:{name:response.data.username,email: val.email  }})
+
+          // alert("you succesfully created account on chatvat")  
         }
       }catch(err){
+        console.log("response.status",
+          response.status
+        );
+        console.log("response",response)
         alert('Invalid email or password');
       }
     },

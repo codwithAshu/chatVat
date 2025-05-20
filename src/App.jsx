@@ -15,9 +15,9 @@ function App() {
     {/* <Login/> */}
 {/* <Navbar/> */}
 <Routes>
-  <Route path='/signup'  element={<Signup/>}/>
+  <Route path='/'  element={<Signup/>}/>
 Signup
-<Route path='/' element={<Login/>} />
+<Route path='/login' element={<Login/>} />
 <Route path='/chatvat' element={<ChatApp/>} />
 </Routes>
        
