@@ -152,7 +152,7 @@ const Signup = () => {
       <button type="submit" className="signup-button">Sign Up</button>
 
       <div className="login-redirect">
-        <p>Have an account? <span className="login-link">Log in</span></p>
+        <p>Have an account? <span className="login-link" onClick={()=>navigate("/login")}>Log in</span></p>
       </div>
     </form>
     </div>
