@@ -51,7 +51,7 @@ const Signup = () => {
           res
         );
         
-        if(res.data.msg==="signup successfully"){
+        if(res.data.msg==="your account is successfully created"){
           alert("you succesfully created account on chatvat")  
         }
       }catch(err){
