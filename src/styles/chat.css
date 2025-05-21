@@ -113,14 +113,14 @@ margin-right: auto;
     color: yellowgreen;
     margin-bottom: 4px;
     font-family: cursive;
-    font-size: 1.1rem; 
+    font-size: 18px;
 }
 .outgoing h4 {
     color: red;
     margin-bottom: 4px;
     font-family: cursive;
     text-align: right;
-    font-size: 1.1rem; 
+    font-size: 18px;
   
 }
 .msgp {
@@ -133,7 +133,7 @@ margin-right: auto;
     border-radius: 4px;
     padding: 2px 2px 2px 2px;
     font-family: cursive;
-    font-size: 1rem;
+    font-size: 15px;
 }
 
 /* .message {
@@ -144,27 +144,4 @@ margin-right: auto;
     word-break: break-word;
     white-space: pre-wrap;
   } */
-  @media (max-width: 600px) {
-    .msgp {
-      font-size: 0.9rem;
-    }
-  
-    .incoming h4,
-    .outgoing h4 {
-      font-size: 1rem;
-    }
-  
-    h1 {
-      font-size: 1.3rem;
-    }
-  
-    textarea {
-      font-size: 0.95rem;
-    }
-  
-    .border {
-      width: 95%;
-      padding: 15px;
-    }
-  }
   
