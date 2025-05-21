@@ -6,13 +6,17 @@ import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import { useLocation } from 'react-router-dom';
 import logo from '../assets/Cv.png'
 const socket = io("https://chatbackend-ph5y.onrender.com", {
-    transports: ["polling"],
+    transports: ["websocket"], // ❗ Polling avoid karne ke liye
+    withCredentials: true 
     }); 
 
 export const ChatApp = () => {
     const location = useLocation();
     const userName = location.state?.name || 'User';
+    const uniqueusername = location.state?.username || 'User';
 console.log("userName",userName);
+console.log("uniqueusername",uniqueusername);
+
 
     
   const [message, setMessage] = useState('');
@@ -24,10 +28,10 @@ console.log("userName",userName);
     setUsername(userName);
     setRecipient(to);
 
-    socket.emit('register', userName);
+    socket.emit('register', uniqueusername);
 
     socket.on('sendMessage', (msg) => {
-      if (msg.recipient === userName) {
+      if (msg.recipient === uniqueusername) {
         setChat(prev => [...prev, { ...msg, type: 'incoming' }]);
       }
     });

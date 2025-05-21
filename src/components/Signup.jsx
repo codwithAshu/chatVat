@@ -53,7 +53,7 @@ const Signup = () => {
         if(response.status===201){
           console.log("hello bro");
           
-          navigate("/login",{state:{name:response.data.username,email: val.email  }})
+          navigate("/login",{state:{name:response.data.username,email: val.email,username:val.username  }})
 
           // alert("you succesfully created account on chatvat")  
         }

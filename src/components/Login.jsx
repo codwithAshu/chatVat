@@ -17,7 +17,7 @@ import { useLocation } from 'react-router-dom';
 const LogIn = () => {
    
   const location = useLocation(); 
-  const userName = location.state?.name || 'User';
+  const username = location.state?.username || 'User';
   const intialemail=location.state?.email || '';
 //   // // const { state } = location;
 //   // const initialEmail = location.state?.email || '';
@@ -49,7 +49,7 @@ const LogIn = () => {
       email:values.email,
       password:values.password,
     })
-    console.log("response",response.data.gameId);
+ 
     console.log("res",response)
     // console.log(response.data.msg); 
     // console.log("name",response.data.Name);
@@ -58,7 +58,7 @@ const LogIn = () => {
       alert("you succesfully logedin")  
     }
     if(response.data.Name){
-    navigate("/chatvat",{state:{name:response.data.Name,email: values.email ,access:response.data.access,id:response.data.gameId }})}
+    navigate("/chatvat",{state:{name:response.data.Name,email: values.email ,username:response.data.username }})}
     if(response.status===200 && response.data.msg==="login successfully" ){
       navigate("/frontend/src/Components/Dashboard/About.jsx")
         }
