@@ -5,6 +5,7 @@ import Navbar from './components/Navbar'
 import { Route, Routes } from 'react-router-dom'
 import ChatApp from './components/Chat'
 import Signup from './components/Signup'
+import Qrcode from './components/Qrcode'
 
 
 function App() {
@@ -16,7 +17,7 @@ function App() {
 {/* <Navbar/> */}
 <Routes>
   <Route path='/'  element={<Signup/>}/>
-Signup
+  <Route path='/codescan'  element={<Qrcode/>}/>
 <Route path='/login' element={<Login/>} />
 <Route path='/chatvat' element={<ChatApp/>} />
 </Routes>
