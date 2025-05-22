@@ -13,6 +13,7 @@ function App() {
 
   return (
     <>
+    {/* <Qrcode/> */}
     {/* <Login/> */}
 {/* <Navbar/> */}
 <Routes>

@@ -1,14 +1,18 @@
 import React, { useEffect, useState,useRef  } from 'react';
+import { connectSocket, disconnectSocket } from "./Socket";
 import io from 'socket.io-client';
 import '../styles/chat.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import { useLocation } from 'react-router-dom';
 import logo from '../assets/Cv.png'
-const socket = io("https://chatbackend-ph5y.onrender.com", {
-    transports: ["websocket"], // ❗ Polling avoid karne ke liye
-    withCredentials: true 
-    }); 
+
+let socket;
+
+// const socket = io("https://chatbackend-ph5y.onrender.com", {
+//     transports: ["websocket","polling"], 
+//     withCredentials: true 
+//     }); 
 
 export const ChatApp = () => {
     const location = useLocation();
@@ -23,31 +27,34 @@ console.log("uniqueusername",uniqueusername);
   const [chat, setChat] = useState([]);
   const [recipient, setRecipient] = useState('');
   const [username, setUsername] = useState('');
+
+  const endOfMessagesRef = useRef(null);
+
   useEffect(() => {
-    const to = prompt("Who do you want to chat with?");
+    socket = connectSocket();
+    const to = prompt("Who do you want to chat with?")?.toLowerCase();
     setUsername(userName);
     setRecipient(to);
 
-    socket.emit('register', uniqueusername);
+    socket.emit('register', uniqueusername.toLowerCase());
 
     socket.on('sendMessage', (msg) => {
-      if (msg.recipient === uniqueusername) {
+      if (msg.recipient.toLowerCase() === uniqueusername.toLowerCase()) {
         setChat(prev => [...prev, { ...msg, type: 'incoming' }]);
       }
     });
 
     socket.on('sessionExpired', (msg) => {
       alert(msg);
-      socket.disconnect();
+      disconnectSocket();
     });
 
 
     return () => {
-      socket.off(); // clean up listeners
+        disconnectSocket(); // clean up listeners
     };
   }, []);
 
-  const endOfMessagesRef = useRef(null); 
   useEffect(() => {
     // 👇 Scroll to bottom when new message arrives
     endOfMessagesRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -69,7 +76,11 @@ console.log("uniqueusername",uniqueusername);
     <section className="chat_section">
       <div className="border">
         <img className="chatlogo" src={logo} alt="chat logo" />
-        <h1>{userName}</h1>
+        <div className='d-flex'>      
+              <h1>{userName}</h1>
+        <p className='uniqueusername'>{uniqueusername}</p>
+        </div>
+
         <div className="msg_area">
           {chat.map((msg, index) => (
             <div key={index} className={`${msg.type} message`}>
