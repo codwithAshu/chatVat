@@ -5,7 +5,7 @@ import '../styles/signup.css'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 const Signup = () => {
-    const navigate = useNavigate();
+const navigate = useNavigate();
 
   const emailRef = useRef(null);
   const phnRef = useRef(null);

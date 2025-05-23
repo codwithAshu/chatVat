@@ -1,32 +1,29 @@
+import '../styles/login.css'
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-// import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
-import '../styles/login.css'
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import loginlogo from '../assets/Cv.png'
+import login from '../assets/instagram-web-lox-image-2x.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import login from '../assets/instagram-web-lox-image-2x.png';
-import { useLocation } from 'react-router-dom';
+
+
+
 
 
 
 const LogIn = () => {
-   
-  const location = useLocation(); 
-  const username = location.state?.username || 'User';
-  const intialemail=location.state?.email || '';
-//   // // const { state } = location;
-//   // const initialEmail = location.state?.email || '';
-//   // const logoutMessage = location.state?.logoutMessage || '';
-  const [showPassword, setShowPassword] = useState(false);
-//C7k+C3k+G1100(G800+G300)+C2k(C800+200+C750+C1200)-50+C2140(C630+C50+C1400+C60)
-//C13100+C2140 C15240
+   const location = useLocation(); 
+   const navigate = useNavigate();
 
-  const navigate = useNavigate();
+  const intialemail=location.state?.email || '';
+  // const username = location.state?.username || 'User';
+
+  const [showPassword, setShowPassword] = useState(false);
+
+ 
   const formik = useFormik({
     initialValues: {
       email: intialemail,
@@ -40,30 +37,27 @@ const LogIn = () => {
         .matches(
           /^(?=.*[a-z])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{5,}$/,
           'Password must contain at least 5 characters, one uppercase letter, one lowercase letter, and one special character.'
-        ),
-        
-    }),
-        onSubmit :async(values) => {
+        ),}),
+
+
+  onSubmit :async(values) => {
           try{
-    const response=await axios.post('https://chatbackend-ph5y.onrender.com/login',{
-      email:values.email,
-      password:values.password,
+         const response=await axios.post('https://chatbackend-ph5y.onrender.com/login',{
+         email:values.email,
+         password:values.password,
     })
  
     console.log("res",response)
-    // console.log(response.data.msg); 
-    // console.log("name",response.data.Name);
     
     if(response.data.msg==='login successfully'){
-      alert("you succesfully logedin")  
+           alert("you succesfully logedin")  
     }
     if(response.data.Name){
-    navigate("/chatvat",{state:{name:response.data.Name,email: values.email ,username:response.data.username }})}
-    if(response.status===200 && response.data.msg==="login successfully" ){
-      navigate("/frontend/src/Components/Dashboard/About.jsx")
-        }
-      } catch(err){
-      alert('Invalid email or password');
+          navigate("/chatvat",{state:{name:response.data.Name,email: values.email ,username:response.data.username }})}
+ } 
+    
+      catch(err){
+           alert('Invalid email or password');
     }
         },
   })
@@ -72,15 +66,22 @@ const LogIn = () => {
     setShowPassword(!showPassword);
   };
 
+  const handleNavigateToSignup = useCallback(() => {
+    navigate("/");
+  }, []);
+  const handleNavigateToForget=useCallback(()=>{
+    navigate('/forgetPassword')
+  },[])
+
 
   return (
  <div>
     <div className='cantainer'>
-     <img src={login} alt="loginlogo" className="insta"/>
+     <img src={login} alt="loginlogo" className="insta" loading='lazy'/>
 
           <form className=' container-form' onSubmit={formik.handleSubmit} >
             <div className="loginp">
-              <img className='gamelogo' src={loginlogo} alt="LOCK logo" />
+              <img className='gamelogo' src={loginlogo} alt="LOCK logo" loading='lazy'/>
               <p className='ltext-center mb-4 mt-0 '>ChatVat</p>
             </div>
             <div className='form-group'>
@@ -127,13 +128,13 @@ const LogIn = () => {
             <div className="separator">
                 <span>OR</span>
             </div>
-            <p className='account'>Forgot your login details? <Link to='/forgetPassword' className='mt-3' onClick={() => navigate('/forgetPassword')}>
+            <p className='account'>Forgot your login details? <Link to='/forgetPassword' className='mt-3' onClick={handleNavigateToForget}>
               Reset your password?
             </Link> </p>
             <p className='or'>OR</p>
             <div className='d-flex' >
             <p className='dont'>Don't have an account?</p>
-            <p className='signup' onClick={() => navigate("/")}>Sign Up</p>
+            <p className='signup' onClick={handleNavigateToSignup}>Sign Up</p>
             </div>
           </form>
         </div >

@@ -1,28 +1,24 @@
-import { useState } from 'react'
-import './App.css'
-import Login from './components/Login'
-import Navbar from './components/Navbar'
-import { Route, Routes } from 'react-router-dom'
-import ChatApp from './components/Chat'
-import Signup from './components/Signup'
-import Qrcode from './components/Qrcode'
+import React ,{ Suspense, lazy  } from 'react'
 
+import { Route, Routes } from 'react-router-dom'
+const Login=lazy(()=>import('./components/Login'))
+const Signup = lazy(() => import('./components/Signup'))
+const Qrcode = lazy(() => import('./components/Qrcode'))
+const ChatApp = lazy(() => import('./components/Chat'))
 
 function App() {
-  
 
+  
   return (
     <>
-    {/* <Qrcode/> */}
-    {/* <Login/> */}
-{/* <Navbar/> */}
+    <Suspense fallback={<div>loading.....</div>}>
 <Routes>
   <Route path='/'  element={<Signup/>}/>
   <Route path='/codescan'  element={<Qrcode/>}/>
 <Route path='/login' element={<Login/>} />
 <Route path='/chatvat' element={<ChatApp/>} />
 </Routes>
-       
+</Suspense>
     </>
   )
 }

@@ -1,11 +1,13 @@
 import React, { useEffect, useState,useRef  } from 'react';
 import { connectSocket, disconnectSocket } from "./Socket";
-import io from 'socket.io-client';
+// import io from 'socket.io-client';
 import '../styles/chat.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import { useLocation } from 'react-router-dom';
 import logo from '../assets/Cv.png'
+const socketRef = useRef(null);
+
 
 let socket;
 
@@ -31,20 +33,21 @@ console.log("uniqueusername",uniqueusername);
   const endOfMessagesRef = useRef(null);
 
   useEffect(() => {
-    socket = connectSocket();
+    socketRef = connectSocket();
+ 
     const to = prompt("Who do you want to chat with?")?.toLowerCase();
     setUsername(userName);
     setRecipient(to);
 
-    socket.emit('register', uniqueusername.toLowerCase());
+    socketRef.current.emit('register', uniqueusername.toLowerCase());
 
-    socket.on('sendMessage', (msg) => {
+    socketRef.current.on('sendMessage', (msg) => {
       if (msg.recipient.toLowerCase() === uniqueusername.toLowerCase()) {
         setChat(prev => [...prev, { ...msg, type: 'incoming' }]);
       }
     });
 
-    socket.on('sessionExpired', (msg) => {
+    socketRef.current.on('sessionExpired', (msg) => {
       alert(msg);
       disconnectSocket();
     });
@@ -68,7 +71,7 @@ console.log("uniqueusername",uniqueusername);
       recipient
     };
     setChat(prev => [...prev, { ...msgObj, type: 'outgoing' }]);
-    socket.emit('sendMessage', msgObj);
+    socketRef.current.emit('sendMessage', msgObj);
     setMessage('');
   };
 
