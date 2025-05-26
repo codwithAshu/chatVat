@@ -6,10 +6,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import { useLocation } from 'react-router-dom';
 import logo from '../assets/Cv.png'
-const socketRef = useRef(null);
 
 
-let socket;
+// let socket;
 
 // const socket = io("https://chatbackend-ph5y.onrender.com", {
 //     transports: ["websocket","polling"], 
@@ -17,6 +16,8 @@ let socket;
 //     }); 
 
 export const ChatApp = () => {
+const socketRef = useRef(null);
+
     const location = useLocation();
     const userName = location.state?.name || 'User';
     const uniqueusername = location.state?.username || 'User';
@@ -33,7 +34,7 @@ console.log("uniqueusername",uniqueusername);
   const endOfMessagesRef = useRef(null);
 
   useEffect(() => {
-    socketRef = connectSocket();
+    socketRef.current  = connectSocket();
  
     const to = prompt("Who do you want to chat with?")?.toLowerCase();
     setUsername(userName);
