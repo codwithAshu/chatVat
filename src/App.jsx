@@ -11,7 +11,7 @@ function App() {
 
   return (
     <>
-    <Suspense fallback={<div>loading.....</div>}>
+    <Suspense fallback={<div>rukjaa bhai tera hi net slow he.....</div>}>
 <Routes>
   <Route path='/'  element={<Signup/>}/>
   <Route path='/codescan'  element={<Qrcode/>}/>

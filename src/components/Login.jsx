@@ -77,11 +77,11 @@ const LogIn = () => {
   return (
  <div>
     <div className='cantainer'>
-     <img src={login} alt="loginlogo" className="insta" loading='lazy'/>
+     <img src={login} alt="loginlogo" className="insta"/>
 
           <form className=' container-form' onSubmit={formik.handleSubmit} >
             <div className="loginp">
-              <img className='gamelogo' src={loginlogo} alt="LOCK logo" loading='lazy'/>
+              <img className='gamelogo' src={loginlogo} alt="LOCK logo" />
               <p className='ltext-center mb-4 mt-0 '>ChatVat</p>
             </div>
             <div className='form-group'>
