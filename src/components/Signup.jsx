@@ -23,6 +23,7 @@ const navigate = useNavigate();
       }
     }
   };
+  
 
   const formik = useFormik({
     initialValues: {
@@ -43,13 +44,16 @@ const navigate = useNavigate();
     onSubmit: async(val) => {
       try{
         console.log("val",val);
+        console.time("AxiosPost");
         const response=await axios.post('https://chatbackend-ph5y.onrender.com/post',{
+        
           email:val.email,
           password:val.password,
           fullName:val.fullName,
           username:val.username,
           phonenumber:val.phonenumber
         })
+        console.timeEnd("AxiosPost");
         if(response.status===201){
           console.log("hello bro");
           
