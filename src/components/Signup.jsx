@@ -44,7 +44,7 @@ const navigate = useNavigate();
     onSubmit: async(val) => {
       try{
         console.log("val",val);
-        console.time("AxiosPost");
+      
         const response=await axios.post('https://chatbackend-ph5y.onrender.com/post',{
         
           email:val.email,
@@ -55,7 +55,7 @@ const navigate = useNavigate();
         })
         console.log("res",response);
         
-        console.timeEnd("AxiosPost");
+ 
         if(response.status===201){
           console.log("you succesfully created account on chatvat");
           alert("you succesfully created account on chatvat")  
@@ -67,8 +67,6 @@ const navigate = useNavigate();
         }
       }catch(err){
        alert(err)
-   if (response)
-       
         if(response.status===500){
           console.log("email or phonenumber or username already exist ");
           alert("email or phonenumber or username already exist ")
