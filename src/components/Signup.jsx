@@ -56,10 +56,12 @@ const navigate = useNavigate();
         console.timeEnd("AxiosPost");
         if(response.status===201){
           console.log("hello bro");
-          
           navigate("/login",{state:{name:response.data.username,email: val.email,username:val.username  }})
-
-          // alert("you succesfully created account on chatvat")  
+          alert("you succesfully created account on chatvat")  
+        }
+        else{
+          console.log("email or phonenumber or username already exist ");
+          alert("email or phonenumber or username already exist ")
         }
       }catch(err){
         console.log("response.status",
