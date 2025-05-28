@@ -53,22 +53,27 @@ const navigate = useNavigate();
           username:val.username,
           phonenumber:val.phonenumber
         })
+        console.log("res",response);
+        
         console.timeEnd("AxiosPost");
         if(response.status===201){
-          console.log("hello bro");
-          navigate("/login",{state:{name:response.data.username,email: val.email,username:val.username  }})
+          console.log("you succesfully created account on chatvat");
           alert("you succesfully created account on chatvat")  
+          navigate("/login",{state:{name:response.data.username,email: val.email,username:val.username  }})
         }
-        else{
+        if(response.status===500){
           console.log("email or phonenumber or username already exist ");
           alert("email or phonenumber or username already exist ")
         }
       }catch(err){
-        console.log("response.status",
-          response.status
-        );
-        console.log("response",response)
-        alert('Invalid email or password');
+       alert(err)
+   if (response)
+       
+        if(response.status===500){
+          console.log("email or phonenumber or username already exist ");
+          alert("email or phonenumber or username already exist ")
+        }
+
       }
     },
   });
