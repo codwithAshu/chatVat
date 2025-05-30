@@ -11,6 +11,16 @@
     margin-top: 4px;
     text-align: left;
   }
+  .server-error {
+    color: red;
+    background-color: #ffe6e6;
+    padding: 8px;
+    margin-top: 10px;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+  }
+  
   
   .signup-form {
     background: white;
@@ -78,4 +88,10 @@
     color: #4c6ef5;
     cursor: pointer;
   }
-  
+  /* tostyfy */
+  .my-toast{
+    background-color: rgb(48, 39, 39);
+  }
+  .my-progress {
+    background-color: #312a2a;
+  }

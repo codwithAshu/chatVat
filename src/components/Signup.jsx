@@ -1,18 +1,22 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import '../styles/signup.css'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const Signup = () => {
 const navigate = useNavigate();
+
+
 
   const emailRef = useRef(null);
   const phnRef = useRef(null);
   const passwordRef = useRef(null);
   const fullNameRef = useRef(null);
   const usernameRef = useRef(null);
-
   const handleKeyDown = (e, nextRef) => {
     if (e.key === 'Enter') {
       e.preventDefault();
@@ -38,7 +42,7 @@ const navigate = useNavigate();
         .required('Email is required'),
       password: Yup.string()
         .min(5, 'At least 5 characters')
-        .matches(/[!@#$%^&*(),.?":{}|<>]/, 'Must include a special character')
+        // .matches(/[!@#$%^&*(),.?":{}|<>]/, 'Must include a special character')
         .required('Password is required'),
     }),
     onSubmit: async(val) => {
@@ -57,21 +61,39 @@ const navigate = useNavigate();
         
  
         if(response.status===201){
-          console.log("you succesfully created account on chatvat");
-          alert("you succesfully created account on chatvat")  
-          navigate("/login",{state:{name:response.data.username,email: val.email,username:val.username  }})
-        }
-        if(response.status===500){
-          console.log("email or phonenumber or username already exist ");
-          alert("email or phonenumber or username already exist ")
-        }
-      }catch(err){
-       alert(err)
-        if(response.status===500){
-          console.log("email or phonenumber or username already exist ");
-          alert("email or phonenumber or username already exist ")
-        }
+          toast.success("🎉 Account created successfully!", {
+            position: "top-center",     // Top center of the page
+            autoClose: 3000,            // Closes after 5 seconds
+            hideProgressBar: true,     // Shows progress bar
+            closeOnClick: true,         // Clicking closes it
+            pauseOnHover: true,         // Pause timeout on hover
+            draggable: true,            // Can be dragged
+            theme: "colored"            // Colorful background
+          });
+          
 
+          setTimeout(() => {
+            navigate("/login", {
+              state: {
+                name: response.data.username,
+                email: val.email,
+                username: val.username
+              }
+            });
+          }, 3000);
+        }
+      }catch(err){ 
+        toast.error("❌ Email, phone or username already exists!", {
+          className: "my-toast",
+          progressClassName: "my-progress",
+      position: "bottom-right",
+       hideProgressBar: true, 
+      autoClose: 2000,
+      draggable: true,  
+      pauseOnHover: true,  
+      theme: "colored"
+    });
+    console.log("Signup error:", err);
       }
     },
   });
@@ -159,12 +181,14 @@ const navigate = useNavigate();
       </div>
 
       <button type="submit" className="signup-button">Sign Up</button>
-
+      
       <div className="login-redirect">
         <p>Have an account? <span className="login-link" onClick={()=>navigate("/login")}>Log in</span></p>
       </div>
     </form>
+    <ToastContainer />
     </div>
+    
   );
 };
 
