@@ -8,7 +8,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import React, { useCallback, useState } from 'react';
 import axios from 'axios';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -57,8 +58,18 @@ const LogIn = () => {
  } 
     
       catch(err){
-           alert('Invalid email or password');
+                 toast.error("❌ wrong password!", {
+                     className: "my-toast",
+                     progressClassName: "my-progress",
+                 position: "bottom-right",
+                  hideProgressBar: true, 
+                 autoClose: 2000,
+                 draggable: true,  
+                 pauseOnHover: true,  
+                 theme: "colored"
+               });
     }
+    console.log("login error:", err);
         },
   })
 
@@ -145,6 +156,7 @@ About Help Privacy Terms Contact Uploading & Non-Users   A.S Verified
   <p className="custom-footer">
         English  © 2025 ChatVat from AshuWorld
 </p>
+<ToastContainer/>
         </div>
   );
 };
