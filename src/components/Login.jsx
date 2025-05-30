@@ -35,10 +35,7 @@ const LogIn = () => {
       email: Yup.string().email('Invalid email address').required('Required'),
       password: Yup.string()
         .required("Please Enter your password")
-        .matches(
-          /^(?=.*[a-z])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{5,}$/,
-          'Password must contain at least 5 characters, one uppercase letter, one lowercase letter, and one special character.'
-        ),}),
+        }),
 
 
   onSubmit :async(values) => {
