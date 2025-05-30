@@ -51,11 +51,19 @@ const LogIn = () => {
     console.log("res",response)
     
     if(response.data.msg==='login successfully'){
-           alert("you succesfully logedin")  
-    }
-    if(response.data.Name){
-          navigate("/chatvat",{state:{name:response.data.Name,email: values.email ,username:response.data.username }})}
- } 
+       toast.success("🎉 Account created successfully!", {
+                  position: "top-center",     // Top center of the page
+                  autoClose: 3000,            // Closes after 5 seconds
+                  hideProgressBar: true,     // Shows progress bar
+                  closeOnClick: true,         // Clicking closes it
+                  pauseOnHover: true,         // Pause timeout on hover
+                  draggable: true,            // Can be dragged
+                  theme: "colored"            // Colorful background
+                });
+
+                setTimeout(()=>{ navigate("/chatvat",{state:{name:response.data.Name,email: values.email ,username:response.data.username }})
+              },3000 )
+     }} 
     
       catch(err){
                  toast.error("❌ wrong password!", {
