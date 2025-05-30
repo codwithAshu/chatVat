@@ -49,8 +49,9 @@ const LogIn = () => {
     })
  
     console.log("res",response)
-    
-    if(response.data.msg==='login successfully'){
+  
+
+    if (response.status === 200 && response.data.username) {
        toast.success("🎉 Account created successfully!", {
                   position: "top-center",     // Top center of the page
                   autoClose: 3000,            // Closes after 5 seconds
@@ -63,21 +64,52 @@ const LogIn = () => {
 
                 setTimeout(()=>{ navigate("/chatvat",{state:{name:response.data.Name,email: values.email ,username:response.data.username }})
               },3000 )
-     }} 
+     }
+     else{
+
+   
+        const errorMsg = err.response.data.msg || err.response.data.error || "Login failed";
     
-      catch(err){
-                 toast.error("❌ wrong password!", {
-                     className: "my-toast",
-                     progressClassName: "my-progress",
-                 position: "bottom-right",
-                  hideProgressBar: true, 
-                 autoClose: 2000,
-                 draggable: true,  
-                 pauseOnHover: true,  
-                 theme: "colored"
-               });
+        toast.error(`❌ ${errorMsg}`, {
+          position: "bottom-right",
+          autoClose: 2000,
+          hideProgressBar: true,
+          theme: "colored"
+        });
+    
+
+     }
+    
+    
+    } 
+     
+    
+     catch (err) {
+      console.log("Login error:", err);
+    
+      if (err.response) {
+        const errorMsg = err.response.data.msg || err.response.data.error || "Login failed";
+    
+        toast.error(`❌ ${errorMsg}`, {
+          position: "bottom-right",
+          autoClose: 2000,
+          hideProgressBar: true,
+          theme: "colored"
+        });
+      } 
+      
+      
+      else {
+        toast.error("🚨 Network error. Please try again!", {
+          position: "bottom-right",
+          autoClose: 2000,
+          hideProgressBar: true,
+          theme: "colored"
+        });
+      }
     }
-    console.log("login error:", err);
+    
+   
         },
   })
 
@@ -143,7 +175,7 @@ const LogIn = () => {
                 <div className='logerror-message'>{formik.errors.password}</div>
               ) : null}
             </div>
-            <button className='btnlogin' onSubmit={formik.handleSubmit} > logIn</button>
+            <button type="submit" className='btnlogin' > logIn</button>
             <div className="separator">
                 <span>OR</span>
             </div>
