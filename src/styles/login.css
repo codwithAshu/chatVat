@@ -1,21 +1,11 @@
 
-:root {
-    --main-font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    --heading-font: 'Roboto', var(--main-font);
-  }
-body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 
-                 Oxygen-Sans, Ubuntu, Cantarell, sans-serif;
-                 font-display: swap; 
-  }
 ::placeholder {
     color: #6c757d;  /* Light greyish color like Bootstrap's placeholder */
     opacity: 0.5;      /* Optional: ensures it's fully visible */
   }
+  
   *{
     margin: 0;
-    padding: 0;
-    box-sizing: border-box;
   }
   .container-form {
 
@@ -33,7 +23,7 @@ body {
 p.ltext-center.mb-4.mt-0 {
     color: black;
     font-family: cursive;
-    font-size: 2.5rem;;
+    font-size: xxx-large;
     font-weight: 600;
 }
 .d-flex {
@@ -243,9 +233,9 @@ button.signup {
     }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and(max-width: 768px) {
     .container-form {
-        width: 29vw;
+        max-width: 100%;
         /* Allow the form to take the full width on smaller screens */
         padding: 20px;
         /* Add padding for better spacing */
@@ -300,8 +290,3 @@ button.signup {
         font-size: 90%;
     }
 }
-@media (max-width: 768px) {
-    p.ltext-center.mb-4.mt-0 {
-      font-size: 2rem; /* Instead of xxx-large */
-    }
-  }
