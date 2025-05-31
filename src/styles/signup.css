@@ -90,7 +90,11 @@
   }
   /* tostyfy */
   .my-toast{
-    background-color: rgb(48, 39, 39);
+    background: linear-gradient(to right, #ff758c, #ff7eb3); /* Pink gradient */
+    color: #fff;
+    border-radius: 10px;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
   }
   .my-progress {
     background-color: #312a2a;
