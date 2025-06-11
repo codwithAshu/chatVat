@@ -62,22 +62,6 @@ const LogIn = () => {
                 setTimeout(()=>{ navigate("/chatvat",{state:{name:response.data.Name,email: values.email ,username:response.data.username }})
               },3000 )
      }
-     else{
-
-   
-        const errorMsg = err.response.data.msg || err.response.data.error || "Login failed";
-    
-        toast.error(`❌ ${errorMsg}`, {
-          position: "bottom-right",
-          autoClose: 2000,
-          hideProgressBar: true,
-          theme: "colored"
-        });
-    
-
-     }
-    
-    
     } 
      
     

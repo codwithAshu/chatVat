@@ -11,12 +11,14 @@ const Signup = () => {
 const navigate = useNavigate();
 
 
-
   const emailRef = useRef(null);
   const phnRef = useRef(null);
   const passwordRef = useRef(null);
-  const fullNameRef = useRef(null);
+  const fullNameRef = useRef(null);   
   const usernameRef = useRef(null);
+
+
+
   const handleKeyDown = (e, nextRef) => {
     if (e.key === 'Enter') {
       e.preventDefault();
@@ -50,7 +52,7 @@ const navigate = useNavigate();
         console.log("val",val);
       
         const response=await axios.post('https://chatbackend-ph5y.onrender.com/post',{
-        
+       
           email:val.email,
           password:val.password,
           fullName:val.fullName,
@@ -113,7 +115,7 @@ const navigate = useNavigate();
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.email}
-          onKeyDown={(e) => handleKeyDown(e, passwordRef)}
+          onKeyDown={(e) => handleKeyDown(e, phnRef)}
         />
         {formik.touched.email && formik.errors.email && (
           <div className="error">{formik.errors.email}</div>
@@ -128,7 +130,7 @@ const navigate = useNavigate();
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.phonenumber}
-          onKeyDown={(e) => handleKeyDown(e, phnRef)}
+          onKeyDown={(e) => handleKeyDown(e, passwordRef)}
         />
 
 
