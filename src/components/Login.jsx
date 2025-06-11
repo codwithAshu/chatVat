@@ -48,7 +48,7 @@ const LogIn = () => {
     console.log("res",response)
   
 
-    if (response.status === 200 && response.data.username) {
+    if (response.status === 200 && response.data.Name) {
        toast.success("🎉 log in successfully!", {
                   position: "top-center",     // Top center of the page
                   autoClose: 3000,            // Closes after 5 seconds
