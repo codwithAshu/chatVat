@@ -1,6 +1,7 @@
 /* Modern Gradient Background */
+@import url('https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Hand+Precursive&display=swap');
 .chat_section {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: url(../assets//chatback3.jpg);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -11,11 +12,13 @@
 .chatlogo {
     width: 60px;
     margin-bottom: 10px;
+        border-radius: 7px;
+
   }
 /* Chat Container */
 .border {
     background: rgba(255, 255, 255, 0.95);
-    padding: 25px;
+    padding: 5px 20px 18px 20px;
     border-radius: 20px;
     width: 450px;
     max-width: 95%;
@@ -39,7 +42,7 @@
 h1 {
     font-weight: 700;
     text-transform: capitalize;
-    font-family: sans-serif;
+    font-family: 'Edu NSW ACT Hand Precursive', cursive;
     font-size: 2rem;
     color: #333;
     margin: 0;

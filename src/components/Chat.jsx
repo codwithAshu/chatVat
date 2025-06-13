@@ -171,7 +171,9 @@ export const ChatApp = () => {
   return (
     <section className="chat_section">
       <div className="border">
+      <div className='chatlogodiv'>
         <img className="chatlogo" src={logo} alt="chat logo" />
+        </div>
         <div className='d-flex'>      
           <h1>{userName}</h1>
           <p className='uniqueusername'>{uniqueusername}</p>

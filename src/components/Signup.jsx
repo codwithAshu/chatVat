@@ -1,11 +1,15 @@
 import React, { useRef, useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import '../styles/signup.css'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
+import { faComments } from '@fortawesome/free-solid-svg-icons';
 import 'react-toastify/dist/ReactToastify.css';
+
 
 const Signup = () => {
 const navigate = useNavigate();
@@ -103,7 +107,9 @@ const navigate = useNavigate();
   return (
     <div className='signup-container '>
     <form className="signup-form" onSubmit={formik.handleSubmit}>
-      <h1 className="signup-heading">chatvat</h1>
+      <h1 className="signup-heading">
+      <FontAwesomeIcon icon={faComments} style={{ marginRight: '10px', color: '#e1306c' }} />
+      chatvat</h1>
 
       <div className="signup-inputs">
         <input
