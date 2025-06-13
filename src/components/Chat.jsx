@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useLocation } from 'react-router-dom';
 import logo from '../assets/Cv.png';
 import EmojiPicker from 'emoji-picker-react';
+import bgImg from '../assets/chatback3.jpg'
 
 export const ChatApp = () => {
   const socketRef = useRef(null);
@@ -169,7 +170,7 @@ export const ChatApp = () => {
   };
 
   return (
-    <section className="chat_section">
+    <section className="chat_section" style={{ backgroundImage: `url(${bgImg})` }}>
       <div className="border">
       <div className='chatlogodiv'>
         <img className="chatlogo" src={logo} alt="chat logo" />

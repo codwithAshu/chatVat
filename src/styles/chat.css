@@ -1,7 +1,7 @@
 /* Modern Gradient Background */
 @import url('https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Hand+Precursive&display=swap');
 .chat_section {
-    background: url(../assets//chatback3.jpg);
+    /* background: url(../assets//chatback3.jpg); */
     display: flex;
     justify-content: center;
     align-items: center;
