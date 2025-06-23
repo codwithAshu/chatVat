@@ -41,6 +41,7 @@ const navigate = useNavigate();
       password: '',
       fullName: '', 
       username: '',
+      phonenumber:''
     },
     validationSchema: Yup.object({
       email: Yup.string()
@@ -50,6 +51,14 @@ const navigate = useNavigate();
         .min(5, 'At least 5 characters')
         // .matches(/[!@#$%^&*(),.?":{}|<>]/, 'Must include a special character')
         .required('Password is required'),
+      phonenumber: Yup.string()
+        .matches(/^\d+$/, 'Only digits allowed')
+         .min(10, 'Must be at least 10 digits')
+        .max(12, 'Must be at most 12 digits')
+        .required('Phone number is required'),
+        
+      username: Yup.string()
+        .required('username  is required'),
     }),
     onSubmit: async(val) => {
       try{
@@ -138,6 +147,9 @@ const navigate = useNavigate();
           value={formik.values.phonenumber}
           onKeyDown={(e) => handleKeyDown(e, passwordRef)}
         />
+         {formik.touched.phonenumber && formik.errors.phonenumber && (
+          <div className="error">{formik.errors.phonenumber}</div>
+        )}
 
 
         <input
@@ -165,7 +177,9 @@ const navigate = useNavigate();
           value={formik.values.fullName}
           onKeyDown={(e) => handleKeyDown(e, usernameRef)}
         />
-
+{formik.touched.username && formik.errors.username(
+  <div></div>
+)}
 <input
   className="signup-input"
   ref={usernameRef}
