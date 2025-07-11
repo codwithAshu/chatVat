@@ -63,8 +63,8 @@ const navigate = useNavigate();
     onSubmit: async(val) => {
       try{
         console.log("val",val);
-      
-        const response=await axios.post('https://chatbackend-ph5y.onrender.com/post',{
+      // https://chatbackend-ph5y.onrender.com/post
+        const response=await axios.post('http://13.201.80.35:2020/login',{
        
           email:val.email,
           password:val.password,

@@ -5,7 +5,7 @@ let socket;
 
 export const connectSocket = () => {
   if (!socket) {
-    socket = io("https://chatbackend-ph5y.onrender.com", {
+    socket = io("http://13.201.80.35:2020/login", {
       transports: ["websocket"],
       withCredentials: true,
     });
