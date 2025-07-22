@@ -40,7 +40,7 @@ const LogIn = () => {
 
   onSubmit :async(values) => {
           try{
-         const response=await axios.post('http://3.6.104.231:2020/login',{
+         const response=await axios.post('https://763a221bbcf4.ngrok-free.app/login',{
          email:values.email,
          password:values.password,
     })
