@@ -40,7 +40,7 @@ const LogIn = () => {
 
   onSubmit :async(values) => {
           try{
-         const response=await axios.post('http://13.201.80.35:2020/login',{
+         const response=await axios.post('http://13.201.80.35:2020/post',{
          email:values.email,
          password:values.password,
     })
