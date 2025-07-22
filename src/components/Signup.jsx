@@ -64,7 +64,7 @@ const navigate = useNavigate();
       try{
         console.log("val",val);
       // https://chatbackend-ph5y.onrender.com/post
-        const response=await axios.post('http://13.201.80.35:2020/post',{
+        const response=await axios.post('http://3.6.104.231:2020/post',{
        
           email:val.email,
           password:val.password,
