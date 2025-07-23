@@ -1,5 +1,8 @@
 /* Modern Gradient Background */
-/* @import url('https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Hand+Precursive&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Hand+Precursive&display=swap');
+body {
+  font-family: 'Edu NSW ACT Hand Precursive', cursive;
+}
 .chat_section {
     /* background: url(../assets//chatback3.jpg); */
     display: flex;
