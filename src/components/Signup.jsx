@@ -90,7 +90,7 @@ const navigate = useNavigate();
           setTimeout(() => {
             navigate("/login", {
               state: {
-                // name: response.data.username,
+                name: response.data.username,
                 email: val.email,
                 username: val.username
               }

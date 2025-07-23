@@ -1,12 +1,12 @@
 import { faPaperPlane, faSmile, faCheck, faCheckDouble } from '@fortawesome/free-solid-svg-icons';
 import React, { useEffect, useState, useRef } from 'react';
 import { connectSocket, disconnectSocket } from "./Socket";
-import '../styles/chat.css';
+import '../styles/chat.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useLocation } from 'react-router-dom';
-import logo from '../assets/Cv.png';
+// import logo from '../assets/Cv.png';
 import EmojiPicker from 'emoji-picker-react';
-import bgImg from '../assets/chatback3.jpg'
+// import bgImg from '../assets/chatback3.jpg'
 
 export const ChatApp = () => {
   const socketRef = useRef(null);
