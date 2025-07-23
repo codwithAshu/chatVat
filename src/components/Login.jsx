@@ -39,8 +39,9 @@ const LogIn = () => {
 
 
   onSubmit :async(values) => {
+    //https://763a221bbcf4.ngrok-free.app/login
           try{
-         const response=await axios.post('https://763a221bbcf4.ngrok-free.app/login',{
+         const response=await axios.post('https://chatbackend-ph5y.onrender.com/login',{
          email:values.email,
          password:values.password,
     })
