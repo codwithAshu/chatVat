@@ -90,7 +90,7 @@ const navigate = useNavigate();
           setTimeout(() => {
             navigate("/login", {
               state: {
-                name: response.data.username,
+                // name: response.data.username,
                 email: val.email,
                 username: val.username
               }
@@ -178,7 +178,7 @@ const navigate = useNavigate();
           onKeyDown={(e) => handleKeyDown(e, usernameRef)}
         />
 {formik.touched.username && formik.errors.username(
-  <div></div>
+  <div className="error">{formik.errors.usernames}</div>
 )}
 <input
   className="signup-input"
