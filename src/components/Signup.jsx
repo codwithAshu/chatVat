@@ -177,9 +177,10 @@ const navigate = useNavigate();
           value={formik.values.fullName}
           onKeyDown={(e) => handleKeyDown(e, usernameRef)}
         />
-{formik.touched.username && formik.errors.username(
-  <div className="error">{formik.errors.usernames}</div>
+{formik.touched.username && formik.errors.username && (
+  <div className="error">{formik.errors.username}</div>
 )}
+
 <input
   className="signup-input"
   ref={usernameRef}
