@@ -17,6 +17,7 @@ function App() {
   <Route path='/codescan'  element={<Qrcode/>}/>
 <Route path='/login' element={<Login/>} />
 <Route path='/chatvat' element={<ChatApp/>} />
+<Route path='/qrcode' element={<Qrcode/>}/>
 </Routes>
 </Suspense>
     </>

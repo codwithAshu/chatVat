@@ -121,6 +121,15 @@ export const ChatApp = () => {
       status: 'sent' // Initial status
     };
     
+
+  setMessage('');
+    socketRef.current.emit('stopTyping', { 
+      user: username,
+      recipient 
+    });
+
+
+    
     setChat(prev => [...prev, { ...msgObj, type: 'outgoing' }]);
     socketRef.current.emit('sendMessage', msgObj);
     
@@ -132,11 +141,9 @@ export const ChatApp = () => {
       });
     }, 1000);
     
-    setMessage('');
-    socketRef.current.emit('stopTyping', { 
-      user: username,
-      recipient 
-    });
+      setMessage('');
+  clearTimeout(typingTimeoutRef.current);  // Also clear typing timeout
+  
   };
 
   const handleTyping = (e) => {

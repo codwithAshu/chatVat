@@ -1,7 +1,6 @@
 import React from 'react'
 // import ReactDOM from "react-dom";
 import { QRCodeCanvas } from 'qrcode.react';
-
 const Qrcode = () => {
     
   return (
