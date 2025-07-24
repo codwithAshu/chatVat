@@ -61,14 +61,14 @@ export const ChatApp = () => {
         }, 800);
       }
     });
-    
-    socketRef.current.on('stopTyping', (data) => {
-  if (data.user !== username) {
-    setIsTyping(false);
-    setTypingUser('');
-    clearTimeout(typingTimeoutRef.current);
-  }
-});
+
+//     socketRef.current.on('stopTyping', (data) => {
+//   if (data.user !== username) {
+//     setIsTyping(false);
+//     setTypingUser('');
+//     clearTimeout(typingTimeoutRef.current);
+//   }
+// });
 
 
     // Message status handler
