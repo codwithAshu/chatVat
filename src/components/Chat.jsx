@@ -112,71 +112,71 @@ export const ChatApp = () => {
     endOfMessagesRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [chat, isTyping]);
 
-  const sendMessage = () => {
-    if (!message.trim()) return;
-      setIsSending(true); 
-
-    const msgObj = {
-      id: Date.now(), // Unique ID for message tracking
-      user: username,
-      message: message.trim(),
-      recipient,
-      status: 'sent' // Initial status
-    };
-    
-
-  setMessage('');
-  clearTimeout(typingTimeoutRef.current);
-    socketRef.current.emit('stopTyping', { 
-      user: username,
-      recipient 
-    });
-
-
-    
-    setChat(prev => [...prev, { ...msgObj, type: 'outgoing' }]);
-    socketRef.current.emit('sendMessage', msgObj);
-    
-    // Simulate server acknowledgement
-    setTimeout(() => {
-      socketRef.current.emit('messageStatus', {
-        id: msgObj.id,
-        status: 'delivered'
-      });
-    }, 1000);
-    
-      setTimeout(() => {
-    setIsSending(false); // ✅ After message settles, re-allow typing
-  }, 200)// Also clear typing timeout
+ const sendMessage = () => {
+  if (!message.trim() || isSending) return;
   
+  setIsSending(true);
+  
+  const msgObj = {
+    id: Date.now(),
+    user: username,
+    message: message.trim(),
+    recipient,
+    status: 'sent'
   };
 
-  const handleTyping = (e) => {
-   const value = e.target.value;
+  // Clear typing immediately when sending
+  socketRef.current.emit('stopTyping', { 
+    user: username,
+    recipient 
+  });
+  clearTimeout(typingTimeoutRef.current);
+  
+  setMessage('');
+  setChat(prev => [...prev, { ...msgObj, type: 'outgoing' }]);
+  socketRef.current.emit('sendMessage', msgObj);
+  
+  // Simulate server acknowledgement
+  setTimeout(() => {
+    socketRef.current.emit('messageStatus', {
+      id: msgObj.id,
+      status: 'delivered'
+    });
+    setIsSending(false);
+  }, 1000);
+};
+
+ const handleTyping = (e) => {
+  const value = e.target.value;
   setMessage(value);
-    // Debounce typing indicators
-    if (isSending) return; 
-    clearTimeout(typingTimeoutRef.current);
-    
-    if (value.trim()) {
-      socketRef.current.emit('typing', {
-        user: username,
-        recipient
-      });
-      
-      typingTimeoutRef.current = setTimeout(() => {
-        socketRef.current.emit('stopTyping', {
-          user: username,
-          recipient
-        });
-      }, 200);
-    } else {
-      socketRef.current.emit('stopTyping', {
-        user: username,
-        recipient
-      });
-    }
-  };
+  
+  // Clear any existing timeout
+  clearTimeout(typingTimeoutRef.current);
+  
+  // Don't emit typing events if we're sending or empty
+  if (isSending || !value.trim()) {
+    socketRef.current.emit('stopTyping', {
+      user: username,
+      recipient
+    });
+    return;
+  }
+  
+  // Emit typing event
+  socketRef.current.emit('typing', {
+    user: username,
+    recipient
+  });
+  
+  // Set timeout to stop typing after pause
+  typingTimeoutRef.current = setTimeout(() => {
+    socketRef.current.emit('stopTyping', {
+      user: username,
+      recipient
+    });
+  }, 1000); // Increased from 200ms to 1000ms for better UX
+};
+
 
   const onEmojiClick = (emojiObject) => {
     setMessage(prev => prev + emojiObject.emoji);
