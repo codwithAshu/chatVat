@@ -147,7 +147,7 @@ export const ChatApp = () => {
     
       setTimeout(() => {
     setIsSending(false); // ✅ After message settles, re-allow typing
-  }, 500)// Also clear typing timeout
+  }, 200)// Also clear typing timeout
   
   };
 
@@ -169,7 +169,7 @@ export const ChatApp = () => {
           user: username,
           recipient
         });
-      }, 800);
+      }, 200);
     } else {
       socketRef.current.emit('stopTyping', {
         user: username,
