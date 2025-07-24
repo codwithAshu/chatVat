@@ -10,7 +10,7 @@ import EmojiPicker from 'emoji-picker-react';
 import bgImg from '../assets/chatback3.jpg'
 
 export const ChatApp = () => {
-  const socketRef = useRef(null);
+const socketRef = useRef(null);
   const location = useLocation();
   const userName = location.state?.name || 'User';
   const uniqueusername = location.state?.username || 'User';
@@ -26,6 +26,7 @@ export const ChatApp = () => {
 
   const endOfMessagesRef = useRef(null);
   const typingTimeoutRef = useRef(null);
+  const typingDebounceRef = useRef(null);
 
   useEffect(() => {
     socketRef.current = connectSocket();
@@ -46,7 +47,7 @@ export const ChatApp = () => {
         setChat(prev => [...prev, { 
           ...msg, 
           type: 'incoming',
-          status: 'delivered' // Incoming messages are automatically delivered
+          status: 'delivered'
         }]);
       }
     });
@@ -60,7 +61,15 @@ export const ChatApp = () => {
         typingTimeoutRef.current = setTimeout(() => {
           setIsTyping(false);
           setTypingUser('');
-        }, 800);
+        }, 1500);
+      }
+    });
+
+    // Stop typing handler
+    socketRef.current.on('stopTyping', (data) => {
+      if (data.user !== username) {
+        setIsTyping(false);
+        setTypingUser('');
       }
     });
 
@@ -79,9 +88,9 @@ export const ChatApp = () => {
     return () => {
       disconnectSocket();
       clearTimeout(typingTimeoutRef.current);
+      clearTimeout(typingDebounceRef.current);
     };
-  }, []);
-
+  }, [username, uniqueusername]);
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -89,94 +98,92 @@ export const ChatApp = () => {
         if (entry.isIntersecting) {
           const msgId = entry.target.getAttribute('data-msgid');
           const msg = chat.find(m => m.id.toString() === msgId);
-          // Only emit for incoming messages
           if (msg && msg.type === 'incoming') {
             socketRef.current.emit('messageSeen', msgId);
           }
         }
       });
-    }, { threshold: 0.7 });  // Increase threshold to 70% visible
+    }, { threshold: 0.7 });
   
-    // Observe only incoming messages
     document.querySelectorAll('.message.incoming').forEach(msg => {
       observer.observe(msg);
     });
   
     return () => observer.disconnect();
   }, [chat]);
-  
-
-
 
   useEffect(() => {
     endOfMessagesRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [chat, isTyping]);
 
- const sendMessage = () => {
-  if (!message.trim() || isSending) return;
-  
-  setIsSending(true);
-  
-  const msgObj = {
-    id: Date.now(),
-    user: username,
-    message: message.trim(),
-    recipient,
-    status: 'sent'
+  const handleTyping = (e) => {
+    const value = e.target.value;
+    setMessage(value);
+
+    // Clear existing debounce timer
+    clearTimeout(typingDebounceRef.current);
+
+    // Don't emit if sending
+    if (isSending) return;
+
+    // Set debounce timer to emit typing event
+    typingDebounceRef.current = setTimeout(() => {
+      if (value.trim()) {
+        socketRef.current.emit('typing', {
+          user: username,
+          recipient
+        });
+      } else {
+        socketRef.current.emit('stopTyping', {
+          user: username,
+          recipient
+        });
+      }
+    }, 300); // 300ms debounce delay
+
+    // Set timeout to stop typing after pause
+    clearTimeout(typingTimeoutRef.current);
+    typingTimeoutRef.current = setTimeout(() => {
+      socketRef.current.emit('stopTyping', {
+        user: username,
+        recipient
+      });
+    }, 1000);
   };
 
-  // Clear typing immediately when sending
-  socketRef.current.emit('stopTyping', { 
-    user: username,
-    recipient 
-  });
-  clearTimeout(typingTimeoutRef.current);
-  
-  setMessage('');
-  setChat(prev => [...prev, { ...msgObj, type: 'outgoing' }]);
-  socketRef.current.emit('sendMessage', msgObj);
-  
-  // Simulate server acknowledgement
-  setTimeout(() => {
-    socketRef.current.emit('messageStatus', {
-      id: msgObj.id,
-      status: 'delivered'
-    });
-    setIsSending(false);
-  }, 1000);
-};
+  const sendMessage = () => {
+    if (!message.trim() || isSending) return;
 
- const handleTyping = (e) => {
-  const value = e.target.value;
-  setMessage(value);
-  
-  // Clear any existing timeout
-  clearTimeout(typingTimeoutRef.current);
-  
-  // Don't emit typing events if we're sending or empty
-  if (isSending || !value.trim()) {
+    // Immediately stop typing indicators
+    clearTimeout(typingDebounceRef.current);
+    clearTimeout(typingTimeoutRef.current);
     socketRef.current.emit('stopTyping', {
       user: username,
       recipient
     });
-    return;
-  }
-  
-  // Emit typing event
-  socketRef.current.emit('typing', {
-    user: username,
-    recipient
-  });
-  
-  // Set timeout to stop typing after pause
-  typingTimeoutRef.current = setTimeout(() => {
-    socketRef.current.emit('stopTyping', {
-      user: username,
-      recipient
-    });
-  }, 1000); // Increased from 200ms to 1000ms for better UX
-};
 
+    setIsSending(true);
+
+    const msgObj = {
+      id: Date.now(),
+      user: username,
+      message: message.trim(),
+      recipient,
+      status: 'sent'
+    };
+
+    setMessage('');
+    setChat(prev => [...prev, { ...msgObj, type: 'outgoing' }]);
+    socketRef.current.emit('sendMessage', msgObj);
+    
+    setTimeout(() => {
+      socketRef.current.emit('messageStatus', {
+        id: msgObj.id,
+        status: 'delivered'
+      });
+      setIsSending(false);
+    }, 1000);
+  };
 
   const onEmojiClick = (emojiObject) => {
     setMessage(prev => prev + emojiObject.emoji);
