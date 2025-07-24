@@ -140,12 +140,12 @@ export const ChatApp = () => {
   };
 
   const handleTyping = (e) => {
-    setMessage(e.target.value);
-  
+   const value = e.target.value;
+  setMessage(value);
     // Debounce typing indicators
     clearTimeout(typingTimeoutRef.current);
     
-    if (e.target.value.trim()) {
+    if (value.trim()) {
       socketRef.current.emit('typing', {
         user: username,
         recipient
@@ -156,7 +156,7 @@ export const ChatApp = () => {
           user: username,
           recipient
         });
-      }, 1000);
+      }, 800);
     } else {
       socketRef.current.emit('stopTyping', {
         user: username,
