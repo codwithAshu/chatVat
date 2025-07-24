@@ -22,6 +22,8 @@ export const ChatApp = () => {
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
   const [typingUser, setTypingUser] = useState('');
+  const [isSending, setIsSending] = useState(false);
+
   const endOfMessagesRef = useRef(null);
   const typingTimeoutRef = useRef(null);
 
@@ -112,7 +114,8 @@ export const ChatApp = () => {
 
   const sendMessage = () => {
     if (!message.trim()) return;
-    
+      setIsSending(true); 
+
     const msgObj = {
       id: Date.now(), // Unique ID for message tracking
       user: username,
@@ -123,6 +126,7 @@ export const ChatApp = () => {
     
 
   setMessage('');
+  clearTimeout(typingTimeoutRef.current);
     socketRef.current.emit('stopTyping', { 
       user: username,
       recipient 
@@ -141,8 +145,9 @@ export const ChatApp = () => {
       });
     }, 1000);
     
-      setMessage('');
-  clearTimeout(typingTimeoutRef.current);  // Also clear typing timeout
+      setTimeout(() => {
+    setIsSending(false); // ✅ After message settles, re-allow typing
+  }, 500)// Also clear typing timeout
   
   };
 
@@ -150,6 +155,7 @@ export const ChatApp = () => {
    const value = e.target.value;
   setMessage(value);
     // Debounce typing indicators
+    if (isSending) return; 
     clearTimeout(typingTimeoutRef.current);
     
     if (value.trim()) {
