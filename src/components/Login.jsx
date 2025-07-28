@@ -15,7 +15,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 
-const LogIn = () => {
+const Login = () => {
    const location = useLocation(); 
    const navigate = useNavigate();
 
@@ -41,15 +41,25 @@ const LogIn = () => {
   onSubmit :async(values) => {
     //https://763a221bbcf4.ngrok-free.app/login
           try{
+            console.log("my try m hu ");
+            
          const response=await axios.post('https://chatbackend-ph5y.onrender.com/login',{
          email:values.email,
          password:values.password,
     })
  
     console.log("res",response)
-  
 
-    if (response.status === 200 ) {
+    localStorage.setItem("token", response.data.token);//storing token in browser
+
+  if (response.data.admin==="2"){
+    console.log("yaha route me to aara hu ");
+    
+    navigate('/adminoption',{state:{name:response.data.Name}})
+    
+  }
+    else  {
+      console.log("direct  yaaha ni  hu ");
        toast.success("🎉 log in successfully!", {
                   position: "top-center",     // Top center of the page
                   autoClose: 3000,            // Closes after 5 seconds
@@ -182,4 +192,4 @@ About Help Privacy Terms Contact Uploading & Non-Users   A.S Verified
         </div>
   );
 };
-export default LogIn;
+export default Login;

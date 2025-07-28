@@ -1,8 +1,12 @@
 import React ,{ Suspense, lazy  } from 'react'
 
 import { Route, Routes } from 'react-router-dom'
-import Login  from './components/Login.jsx';
+
 import Signup from './components/Signup'
+import AdminOptions from './components/adminOption.jsx';
+  import AdminDashboard from './components/admin.jsx';
+import Login from './components/Login.jsx';
+
 const Qrcode = lazy(() => import('./components/Qrcode'))
 const ChatApp = lazy(() => import('./components/Chat'))
 
@@ -18,6 +22,8 @@ function App() {
 <Route path='/login' element={<Login/>} />
 <Route path='/chatvat' element={<ChatApp/>} />
 <Route path='/qrcode' element={<Qrcode/>}/>
+<Route path="/adminoption" element={<AdminOptions/>} />
+<Route path="/admin" element={<AdminDashboard/>} />
 </Routes>
 </Suspense>
     </>
