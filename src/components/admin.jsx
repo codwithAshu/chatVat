@@ -4,6 +4,7 @@ import Input  from "./ui/input";
 import Button  from "./ui/button";
 import { Card, CardContent } from "./ui/card";
 import axios from "axios";
+import "../styles/admin.css"
 import { Search } from "lucide-react";
 
 const AdminDashboard = () => {
@@ -40,10 +41,36 @@ const usersArray = res.data?.data || [];
     }
   };
 
+
+const handleEdit = async (user) => {
+  const newAccess = user.app_id === 1 ? 2 : 1;
+
+  try {
+    await axios.put(`https://chatbackend-ph5y.onrender.com/edit/${user.id}`, {
+      app_id: newAccess,
+    });
+
+    const updatedUsers = users.map((u) =>
+      u.id === user.id ? { ...u, app_id: newAccess } : u
+    );
+
+    setUsers(updatedUsers);
+    setFilteredUsers(updatedUsers);
+    alert(`Access updated to ${newAccess === 1 ? "User" : "Admin"}`);
+  } catch (error) {
+    console.error("Error updating access:", error);
+    alert("Failed to update access");
+  }
+};
+
+
+
+
+
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this user?")) return;
     try {
-      await axios.delete(`https://chatbackend-ph5y.onrender.com/deleteUser/${id}`);
+      await axios.delete(`https://chatbackend-ph5y.onrender.com/delete-data/${id}`);
       setUsers(users.filter((user) => user.id !== id));
     } catch (err) {
       console.error("Error deleting user:", err);
@@ -94,6 +121,7 @@ const usersArray = res.data?.data || [];
             <TableHead onClick={() => handleSort("firstname")} className="cursor-pointer">Name</TableHead>
             <TableHead onClick={() => handleSort("email")} className="cursor-pointer">Email</TableHead>
             <TableHead>Phone</TableHead>
+             <TableHead>username</TableHead>
             <TableHead>Access</TableHead>
             <TableHead>Actions</TableHead>
           </TableRow>
@@ -104,17 +132,19 @@ const usersArray = res.data?.data || [];
               <TableCell>{user.firstname}</TableCell>
               <TableCell>{user.email}</TableCell>
               <TableCell>{user.phonenumber}</TableCell>
+               <TableCell>{user.username}</TableCell>
               <TableCell>{user.app_id}</TableCell>
               <TableCell>
                 <div className="flex gap-2">
                   <Button
-                    className="bg-blue-500 hover:bg-blue-600 text-white"
-                    onClick={() => alert("Edit feature coming soon")}
+                    className="editbtn hover:bg-blue-600 text-green"
+                   onClick={() => handleEdit(user)}
+
                   >
-                    Edit
+                    {user.app_id === 1 ? "Make Admin" : "Make User"}
                   </Button>
                   <Button
-                    className="bg-red-500 hover:bg-red-600 text-white"
+                    className="dltbtn "
                     onClick={() => handleDelete(user.id)}
                   >
                     Delete
