@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "./ui/table";
 import Input  from "./ui/input";
-import Button  from "./ui/button";
+import button  from "./ui/button";
 import { Card, CardContent } from "./ui/card";
 import axios from "axios";
 import "../styles/admin.css"
@@ -136,19 +136,20 @@ const handleEdit = async (user) => {
               <TableCell>{user.app_id}</TableCell>
               <TableCell>
                 <div className="flex gap-2">
-                  <Button
+                   
+                  <button
                     className="editbtn hover:bg-blue-600 text-green"
                    onClick={() => handleEdit(user)}
 
                   >
                     {user.app_id === 1 ? "Make Admin" : "Make User"}
-                  </Button>
-                  <Button
+                  </button>
+                  <button
                     className="dltbtn "
                     onClick={() => handleDelete(user.id)}
                   >
                     Delete
-                  </Button>
+                  </button>
                 </div>
               </TableCell>
             </TableRow>
